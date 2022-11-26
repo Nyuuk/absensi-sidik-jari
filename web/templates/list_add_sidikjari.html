@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="title">List To add FingerPrint</h2>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Finger Id</th>
+            <th scope="col">Time Push</th>
+            <th scope="col">Edit Data to ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for finger in fingers %}
+        <tr>
+            <td>{{ finger.id }}</td>
+            <td>{{ finger.finger }}</td>
+            <td>{{ finger.time_push }}</td>
+            <td>
+                <form action="/api/sidikjari" method="put" accept-charset="utf-8" id="my_form">
+                <input type="text" name="id" id="id"/>
+                <button type="btnAdd" class="btn btn-primary" form="my_form">OK</button>
+                </form>
+                <form action="/api/sidikjari?id={{ finger.id }}" method="delete" accept-charset="utf-8" id="del_sid">
+                <button type="btnAdd" class="btn btn-primary" form="del_sid">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
